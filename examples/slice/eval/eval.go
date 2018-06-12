@@ -11,11 +11,13 @@ import (
 func Eval(expr string) int {
 	var ops []string
 	var nums []int
+
 	pop := func() int {
 		last := nums[len(nums)-1]
 		nums = nums[:len(nums)-1]
 		return last
 	}
+
 	reduce := func(higher string) {
 		for len(ops) > 0 {
 			op := ops[len(ops)-1]
@@ -23,12 +25,16 @@ func Eval(expr string) int {
 				// 목록에 없는 연산자이므로 종료
 				return
 			}
+
 			ops = ops[:len(ops)-1]
+
 			if op == "(" {
 				// 괄호를 제거하였으므로 종료
 				return
 			}
+
 			b, a := pop(), pop()
+
 			switch op {
 			case "+":
 				nums = append(nums, a+b)
@@ -41,6 +47,7 @@ func Eval(expr string) int {
 			}
 		}
 	}
+
 	for _, token := range strings.Split(expr, " ") {
 		switch token {
 		case "(":
@@ -61,6 +68,7 @@ func Eval(expr string) int {
 			nums = append(nums, num)
 		}
 	}
+
 	reduce("+-*/")
 	return nums[0]
 }

@@ -79,3 +79,45 @@ func Example_sliceCap() {
 	//
 	// [1 2 100 4 5] [1 2 100] [100 4 5] [1 2 100 4]
 }
+
+func Example_sliceCopy() {
+	src := []int{30, 20, 50, 10, 40}
+	dest := make([]int, len(src))
+
+	for i := range src {
+		dest[i] = src[i]
+	}
+
+	fmt.Println(dest)
+	// Output: [30 20 50 10 40]
+}
+
+func Example_sliceCopy2() {
+	src := []int{30, 20, 50, 10, 40}
+	dest := make([]int, len(src))
+
+	if n := copy(dest, src); n != len(src) {
+		fmt.Println("복사가 덜 됐습니다.")
+	}
+
+	fmt.Println(dest)
+	// Output: [30 20 50 10 40]
+}
+
+func Example_sliceCopy3() {
+	src := []int{30, 20, 50, 10, 40}
+	dest := make([]int, len(src))
+
+	copy(dest, src)
+
+	fmt.Println(dest)
+	// Output: [30 20 50 10 40]
+}
+
+func Example_sliceCopy4() {
+	src := []int{30, 20, 50, 10, 40}
+	dest := append([]int(nil), src...)
+
+	fmt.Println(dest)
+	// Output: [30 20 50 10 40]
+}
