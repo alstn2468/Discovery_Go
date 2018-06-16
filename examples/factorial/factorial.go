@@ -8,19 +8,16 @@ func fac(n int) int {
 	if n <= 0 {
 		return 1
 	}
-
 	return n * fac(n-1)
 }
 
 // facItr returns n!.
 func facItr(n int) int {
 	result := 1
-
 	for n > 0 {
 		result *= n
 		n--
 	}
-
 	return result
 }
 
